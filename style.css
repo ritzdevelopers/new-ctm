@@ -15,11 +15,10 @@ header nav {
   justify-content: center;
   gap: 10px;
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
   background: white;
   z-index: 100;
-  
 }
 header nav .tpDiv {
   width: 100%;
@@ -105,12 +104,12 @@ header nav .btmDiv div ul li {
     padding-left: 4rem;
     padding-right: 4rem;
   }
-  
+
   header nav .btmDiv div ul {
     gap: 30px;
     flex-wrap: wrap;
   }
-  
+
   header nav .btmDiv .btmTp .inputDiv {
     width: 400px;
   }
@@ -122,17 +121,17 @@ header nav .btmDiv div ul li {
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  
+
   header nav .btmDiv .btmTp {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   header nav .btmDiv .btmTp .inputDiv {
     width: 100%;
     max-width: 400px;
   }
-  
+
   header nav .btmDiv div ul {
     display: none; /* Hide desktop nav items */
   }
@@ -144,11 +143,11 @@ header nav .btmDiv div ul li {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   header nav .btmDiv .btmTp .inputDiv {
     width: 100%;
   }
-  
+
   header nav .btmDiv .btmTp div button {
     width: 100%;
   }
@@ -162,7 +161,7 @@ header nav .btmDiv div ul li {
   width: 100%;
   background: white;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-header {
@@ -203,7 +202,7 @@ header nav .btmDiv div ul li {
   height: 100vh;
   background: white;
   padding: 20px;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   transition: right 0.3s ease;
   overflow-y: auto;
 }
@@ -258,7 +257,7 @@ header nav .btmDiv div ul li {
   .mobile-nav {
     display: block;
   }
-  
+
   /* Hide desktop nav on mobile */
   header nav {
     display: none;
@@ -337,16 +336,16 @@ header nav .btmDiv div ul li {
     margin-top: 8rem;
     min-height: 80vh;
   }
-  
+
   .s1 div .txt-div {
     max-width: 100%;
     min-height: auto;
   }
-  
+
   .s1 div div h1 {
     font-size: 42px;
   }
-  
+
   .s1 div div p {
     font-size: 20px;
   }
@@ -358,19 +357,19 @@ header nav .btmDiv div ul li {
     min-height: 70vh;
     background-position: 60% center;
   }
-  
+
   .s1 div {
     padding: 3rem 1.5rem;
   }
-  
+
   .s1 div div h1 {
     font-size: 36px;
   }
-  
+
   .s1 div div p {
     font-size: 18px;
   }
-  
+
   .s1 div div button {
     width: 160px;
     height: 44px;
@@ -384,27 +383,27 @@ header nav .btmDiv div ul li {
     min-height: 60vh;
     background-position: 65% center;
   }
-  
+
   .s1 div {
     padding: 2rem 1rem;
   }
-  
+
   .s1 div .txt-div {
     align-items: center;
     text-align: center;
     gap: 15px;
   }
-  
+
   .s1 div div h1 {
     font-size: 28px;
     line-height: 1.3;
   }
-  
+
   .s1 div div p {
     font-size: 16px;
     line-height: 1.4;
   }
-  
+
   .s1 div div button {
     width: 140px;
     height: 40px;
@@ -416,11 +415,11 @@ header nav .btmDiv div ul li {
   .s1 div div h1 {
     font-size: 24px;
   }
-  
+
   .s1 div div p {
     font-size: 14px;
   }
-  
+
   .s1 div div button {
     width: 130px;
     height: 38px;
@@ -621,6 +620,7 @@ header nav .btmDiv div ul li {
   }
   .s2 .main-containt {
     padding: 20px;
+    margin-bottom: 0px;
   }
   .s2 .main-containt .lftSide {
     padding: 20px 0;
@@ -683,6 +683,9 @@ header nav .btmDiv div ul li {
   .s2 .s2Tap .s2abs div .pnk .pd2 {
     height: 50px;
     width: 50px;
+  }
+  .s2 .s2Tap .s2Absolute img {
+    width: 300px;
   }
 }
 /* Section 3 Styling Is Starting From Here  */
@@ -1023,6 +1026,7 @@ header nav .btmDiv div ul li {
     padding-top: 40px;
     padding-bottom: 40px;
     gap: 25px;
+    min-height: 40vh;
   }
   .s4 .iframeContainer iframe {
     height: 250px;
@@ -1186,17 +1190,17 @@ header nav .btmDiv div ul li {
   .s5Card {
     height: 600px;
   }
-  
+
   .s5InnerCard {
     width: 450px;
     height: 230px;
     padding: 25px;
   }
-  
+
   .s5InnerCard h2 {
     font-size: 28px;
   }
-  
+
   .s5InnerCard p {
     font-size: 16px;
     line-height: 28px;
@@ -1208,16 +1212,16 @@ header nav .btmDiv div ul li {
   .s5 {
     padding: 50px 20px;
   }
-  
+
   .s5-header h2 {
     font-size: 32px;
   }
-  
+
   .s5Card {
     height: 500px;
     padding: 30px;
   }
-  
+
   .s5InnerCard {
     width: 100%;
     max-width: 400px;
@@ -1231,36 +1235,36 @@ header nav .btmDiv div ul li {
   .s5 {
     padding: 40px 15px;
   }
-  
+
   .s5-header p {
     font-size: 16px;
     margin-bottom: 15px;
   }
-  
+
   .s5-header h2 {
     font-size: 28px;
   }
-  
+
   .s5Card {
     height: 400px;
     padding: 20px;
     justify-content: center;
   }
-  
+
   .s5InnerCard {
     padding: 15px;
   }
-  
+
   .s5InnerCard h2 {
     font-size: 24px;
     margin-bottom: 15px;
   }
-  
+
   .s5InnerCard p {
     font-size: 15px;
     line-height: 24px;
   }
-  
+
   .tracker-dot {
     height: 14px;
     width: 14px;
@@ -1272,25 +1276,25 @@ header nav .btmDiv div ul li {
   .s5 {
     padding: 30px 10px;
   }
-  
+
   .s5-header h2 {
     font-size: 24px;
   }
-  
+
   .s5Card {
     height: 350px;
     padding: 15px;
   }
-  
+
   .s5InnerCard h2 {
     font-size: 20px;
   }
-  
+
   .s5InnerCard p {
     font-size: 14px;
     line-height: 22px;
   }
-  
+
   .tracker-dot {
     height: 12px;
     width: 12px;
@@ -1301,7 +1305,7 @@ header nav .btmDiv div ul li {
 /* ---------- Section 6 Base Styles ---------- */
 .s6 {
   width: 100%;
-  background: #fbfbfb;
+  /* background: #fbfbfb; */
   display: flex;
   padding: 60px 20px;
   flex-direction: column;
@@ -1353,16 +1357,16 @@ header nav .btmDiv div ul li {
 .s6 .card {
   width: 415px !important;
   height: 300px;
-  position: relative;
-  background: red;
+  /* position: relative;
+  background: red; */
   border-radius: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .s6 .card img {
-  width: 100%;
+  width: 415px !important;
   height: 100%;
   object-fit: cover;
 }
@@ -1437,7 +1441,7 @@ header nav .btmDiv div ul li {
     width: 340px;
     height: 250px;
   }
-  
+
   .s6 .carousel-container {
     gap: 20px;
   }
@@ -1448,20 +1452,20 @@ header nav .btmDiv div ul li {
   .s6 {
     padding: 50px 20px;
   }
-  
+
   .s6 .heading h2 {
     font-size: 32px;
   }
-  
+
   .s6 .card {
     width: 300px;
     height: 220px;
   }
-  
+
   .s6 .card-overlay h3 {
     font-size: 18px;
   }
-  
+
   .s6 .card-overlay p {
     font-size: 13px;
   }
@@ -1472,24 +1476,24 @@ header nav .btmDiv div ul li {
   .s6 {
     padding: 40px 15px;
   }
-  
+
   .s6 .heading {
     margin-bottom: 30px;
   }
-  
+
   .s6 .heading p {
     font-size: 16px;
   }
-  
+
   .s6 .heading h2 {
     font-size: 28px;
   }
-  
+
   .s6 .card {
     width: 280px;
     height: 200px;
   }
-  
+
   .s6 .carousel-nav button {
     width: 40px;
     height: 40px;
@@ -1501,178 +1505,199 @@ header nav .btmDiv div ul li {
   .s6 {
     padding: 30px 10px;
   }
-  
+
   .s6 .heading h2 {
     font-size: 24px;
   }
-  
+
   .s6 .card {
     width: 260px;
     height: 180px;
   }
-  
+
   .s6 .card-overlay {
     padding: 15px;
   }
-  
+
   .s6 .card-overlay h3 {
     font-size: 16px;
   }
 }
 
 /* Section 7 CSS Styling Is Starting From Here  */
-/* Updated CSS with responsive design */
+/* Section 7 CSS Styling */
+/* Blog Section Styles */
+.blog-section {
+  padding: 4rem 0;
+  background-color: #fff;
+}
 
-/* Section 7 CSS Styling Is Starting From Here  */
-.s7 {
-  width: 100%;
+.container {
+  width: 90%;
+  max-width: 1274px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+.blog-header {
   display: flex;
-  padding: 70px 0 100px;
-  flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.header-content {
+  flex: 1 1 auto;
+}
+
+.subtitle {
+  color: #258FD2;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.header-action {
+  flex: 0 0 auto;
+}
+
+.view-all-btn {
+  background: transparent;
+  color: #258FD2;
+  border: 1px solid #258FD2;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background: #258FD2;
+  color: white;
+}
+
+/* Carousel Styles */
+.blog-carousel {
   position: relative;
   overflow: hidden;
 }
 
-.s7 .s7Header {
-  width: 90%;
-  max-width: 79.5625rem;
+.blog-card-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.s7 .s7Header div {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.s7 .s7Header div p {
-  color: #1a1a1a;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.s7 .s7Header div h2 {
-  color: #1a1a1a;
-  font-size: 36px;
-  font-weight: 600;
-}
-
-.s7 .s7Header div button {
-  width: 174px;
-  height: 48px;
-  border: none;
-  background: #1356a3;
-  font-weight: 500;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.s7 .s7Header div button:hover {
-  background: #0e4280;
-}
-
-.blogCardContainer {
-  display: flex;
-  width: 100%;
   gap: 1.5rem;
-  padding: 1rem 0;
-  margin-top: 1rem;
-  position: relative;
+  transition: transform 0.5s ease;
+  will-change: transform;
+  padding-bottom: 1rem; /* Space for scrollbar if needed */
 }
 
-.blogCard {
-  display: flex;
-  flex-direction: column;
+.blog-card {
+  flex: 0 0 calc(33.333% - 1rem);
   background: #fff;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  width: calc(33.333% - 1rem);
-  min-width: 300px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 456px;
-  flex-shrink: 0;
-  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.blogCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
+.card-image {
+  aspect-ratio: 16/9;
+  overflow: hidden;
 }
 
-.blogCard .imgCnt {
-  width: 100%;
-  height: 74%;
-  background: #eaeaea;
-}
-
-.blogCard .imgCnt img {
+.card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.blogCard > div:nth-child(2) {
-  padding: 1rem 1.2rem;
+.card-content {
+  padding: 1.5rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 1rem 0;
   flex: 1;
 }
 
-.blogCard > div:nth-child(2) > div:first-child p {
-  font-size: 20px;
-  font-weight: 600;
-  color: #444444;
-  margin-bottom: 1rem;
-}
-
-.blogCard > div:nth-child(2) > div:last-child {
+.card-footer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
 }
 
-.blogCard > div:nth-child(2) > div:last-child p {
-  font-size: 0.9rem;
-  color: #777;
+.post-date {
+  color: #666;
+  font-size: 0.875rem;
 }
 
-.blogCard button {
+.read-more-btn {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  border: none;
+  gap: 0.5rem;
   background: transparent;
+  border: none;
+  color: #258FD2;
+  font-weight: 600;
   cursor: pointer;
-  color: #258fd2;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  padding: 0.5rem 0;
 }
 
-.blogCard button:hover {
-  color: #1b6fa5;
+.read-more-btn svg {
+  transition: transform 0.3s ease;
 }
 
-.blogCard button svg {
-  flex-shrink: 0;
+.read-more-btn:hover svg {
+  transform: translateX(4px);
 }
 
-/* Carousel Navigation Dots */
-.carousel-dots {
+/* Carousel Controls */
+.carousel-controls {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.carousel-prev,
+.carousel-next {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: rgba(37, 143, 210, 0.1);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 0.75rem;
 }
 
 .carousel-dot {
@@ -1681,75 +1706,84 @@ header nav .btmDiv div ul li {
   border-radius: 50%;
   background: #ccc;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .carousel-dot.active {
-  background: #258fd2;
+  background: #258FD2;
+  transform: scale(1.2);
 }
 
-/* Responsive Media Queries */
-@media (max-width: 1200px) {
-  .blogCard {
-    width: calc(50% - 1rem);
-    min-width: 280px;
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .blog-card {
+    flex: 0 0 calc(50% - 0.75rem);
+    min-width: calc(50% - 0.75rem);
   }
   
-  .s7 .s7Header {
-    width: 95%;
+  .blog-card-container {
+    gap: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .s7 {
-    padding: 50px 0;
-  }
-  
-  .s7 .s7Header {
+  .blog-header {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+    text-align: center;
+    gap: 1.5rem;
   }
   
-  .s7 .s7Header div h2 {
-    font-size: 28px;
-  }
-  
-  .blogCard {
+  .header-content {
     width: 100%;
-    min-width: 250px;
-    height: auto;
   }
   
-  .blogCard .imgCnt {
-    height: 200px;
+  .header-action {
+    width: 100%;
+  }
+  
+  .view-all-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-section {
+    padding: 3rem 0;
+  }
+  
+  .blog-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .carousel-controls {
+    margin-top: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .s7 .s7Header div p {
-    font-size: 16px;
+  .blog-section {
+    padding: 2.5rem 0;
   }
   
-  .s7 .s7Header div h2 {
-    font-size: 24px;
+  .card-content {
+    padding: 1.25rem;
   }
   
-  .s7 .s7Header div button {
-    width: 140px;
-    height: 40px;
-    font-size: 14px;
-  }
-  
-  .blogCard > div:nth-child(2) > div:first-child p {
-    font-size: 18px;
+  .card-title {
+    font-size: 1.1rem;
   }
 }
-
 /* Section 8 CSS Styling Is Starting From Here  */
 .s8 {
   width: 100vw;
-  min-height: 100vh;
+  min-height: 10vh;
+  /* background: red; */
 }
 .s8 img {
   height: 100%;
@@ -1786,8 +1820,8 @@ header nav .btmDiv div ul li {
   min-width: 100px;
 }
 
-.s9 .img1, 
-.s9 .img2, 
+.s9 .img1,
+.s9 .img2,
 .s9 .img3 {
   border-radius: 100%;
   overflow: hidden;
@@ -1908,18 +1942,18 @@ header nav .btmDiv div ul li {
     flex-direction: column;
     gap: 50px;
   }
-  
+
   .s9 .sideImages {
     flex-direction: row;
     width: 100%;
     justify-content: center;
     gap: 30px;
   }
-  
+
   .s9 .sideImages > div {
     align-self: center !important;
   }
-  
+
   .s9 .centerDiv {
     min-height: 350px;
   }
@@ -1929,24 +1963,24 @@ header nav .btmDiv div ul li {
   .s9 {
     padding: 40px 20px;
   }
-  
+
   .s9 .section-title {
     font-size: 28px;
   }
-  
+
   .s9 .testimonial-text {
     font-size: 18px;
   }
-  
+
   .s9 .sideImages {
     gap: 20px;
   }
-  
+
   .s9 .img1 {
     height: 50px;
     width: 50px;
   }
-  
+
   .s9 .img2,
   .s9 .img3 {
     height: 70px;
@@ -1958,19 +1992,19 @@ header nav .btmDiv div ul li {
   .s9 .section-title {
     font-size: 24px;
   }
-  
+
   .s9 .testimonial-text {
     font-size: 16px;
   }
-  
+
   .s9 .client-info h3 {
     font-size: 18px;
   }
-  
+
   .s9 .client-info p {
     font-size: 14px;
   }
-  
+
   .s9 .slideTracker .dot {
     height: 10px;
     width: 10px;
@@ -2121,19 +2155,20 @@ footer {
   .footer-container {
     gap: 4rem;
   }
-  
-  .footer-title, .form-title {
+
+  .footer-title,
+  .form-title {
     font-size: 32px;
   }
-  
+
   .contact-item .label {
     font-size: 22px;
   }
-  
+
   .contact-item .value {
     font-size: 17px;
   }
-  
+
   .contact-form input {
     width: 100%;
   }
@@ -2144,50 +2179,51 @@ footer {
   .footer-container {
     gap: 3rem;
   }
-  
+
   .footer-contact {
     flex-direction: column;
     gap: 30px;
   }
-  
-  .footer-title, .form-title {
+
+  .footer-title,
+  .form-title {
     font-size: 28px;
     white-space: normal;
   }
-  
+
   .contact-group {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .contact-item {
     flex-direction: column;
     gap: 5px;
     padding: 0;
   }
-  
+
   .ci1 {
     border-right: none;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
-  
+
   .contact-item .label {
     font-size: 20px;
   }
-  
+
   .contact-item .value {
     font-size: 16px;
   }
-  
+
   .form-row {
     flex-direction: column;
   }
-  
+
   .contact-form input {
     width: 100%;
   }
-  
+
   .submit-btn {
     width: 100%;
   }
@@ -2199,30 +2235,31 @@ footer {
     padding: 2rem 1rem;
     min-height: auto;
   }
-  
+
   .footer-container {
     gap: 2.5rem;
   }
-  
-  .footer-title, .form-title {
+
+  .footer-title,
+  .form-title {
     font-size: 24px;
     margin-bottom: 0.8rem;
   }
-  
+
   .contact-item .label {
     font-size: 18px;
   }
-  
+
   .contact-item .value {
     font-size: 15px;
   }
-  
+
   .contact-form input,
   .contact-form textarea {
     padding: 0.7rem;
     height: 50px;
   }
-  
+
   .contact-form textarea {
     min-height: 100px;
   }
@@ -2258,7 +2295,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
-.footer2 .top .sbtop div h2{
+.footer2 .top .sbtop div h2 {
   font-size: 28px;
   font-weight: 600;
   text-transform: uppercase;
@@ -2310,7 +2347,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
-.footer2 .btm{
+.footer2 .btm {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -2318,14 +2355,14 @@ footer {
   margin-top: 20px;
   text-align: center;
 }
-.footer2 .btm .whatsap img{
+.footer2 .btm .whatsap img {
   height: 86px;
   width: 86px;
 }
 .footer2 .btm .tpAR {
   height: 71px;
   width: 71px;
-  background: #16518D;
+  background: #16518d;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2342,12 +2379,12 @@ footer {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .footer2 .top .sbtop {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .footer2 .top .pp {
     margin-top: 15px;
   }
@@ -2357,25 +2394,25 @@ footer {
   .footer2 .top .sbtop div h2 {
     font-size: 20px;
   }
-  
+
   .footer2 .top .sbtop {
     gap: 15px;
   }
-  
+
   .footer2 .top div .scl {
     gap: 10px;
   }
-  
+
   .footer2 .top div .scl p {
     height: 38px;
     width: 38px;
   }
-  
+
   .footer2 .btm .whatsap img {
     height: 70px;
     width: 70px;
   }
-  
+
   .footer2 .btm .tpAR {
     height: 60px;
     width: 60px;
@@ -2387,43 +2424,43 @@ footer {
     padding-left: 15px;
     padding-right: 15px;
   }
-  
+
   .footer2 .top .sbtop {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
-  
+
   .footer2 .top .sbtop div h2 {
     font-size: 18px;
   }
-  
+
   .footer2 .btm {
     flex-direction: column;
     gap: 15px;
     margin-top: 30px;
   }
-  
+
   .footer2 .btm .center {
     order: -1;
   }
-  
+
   .footer2 .btm .whatsap img {
     height: 60px;
     width: 60px;
   }
-  
+
   .footer2 .btm .tpAR {
     height: 50px;
     width: 50px;
     margin-top: 15px;
   }
-  
+
   .footer2 .top div .scl p {
     height: 34px;
     width: 34px;
   }
-  
+
   .footer2 .top div .scl svg {
     transform: scale(0.8);
   }
@@ -2433,23 +2470,105 @@ footer {
   .footer2 .top .sbtop div h2 {
     font-size: 16px;
   }
-  
+
   .footer2 .top div .scl p {
     height: 30px;
     width: 30px;
   }
-  
+
   .footer2 .btm .whatsap img {
     height: 50px;
     width: 50px;
   }
-  
+
   .footer2 .btm .tpAR {
     height: 45px;
     width: 45px;
   }
-  
+
   .footer2 .btm .center p {
     font-size: 14px;
+  }
+} /* Slider Effect Is Starting From Here  */
+/* Slider Effect Is Starting From Here */
+.slider {
+  width: 100%;
+  height: 50vw;
+  overflow: hidden;
+  perspective: 100px;
+  position: relative;
+  max-height: 600px;
+}
+.swiper-container {
+  height: 100%;
+  width: 100%;
+}
+.swiper-wrapper {
+  height: 100%;
+  width: 100%;
+}
+.swiper-slider {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  background: #fbfbfb;
+}
+.card {
+  width: 579.75px;
+  height: 479.26px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.slider::before,
+.slider::after {
+  content: "";
+  position: absolute;
+  height: 200%;
+  width: 200%;
+  background: #fbfbfb;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.slider::before {
+  top: -170%;
+}
+.slider::after {
+  bottom: -170%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .card {
+    width: 450px;
+    height: 372px;
+  }
+}
+@media (max-width: 992px) {
+  .card {
+    width: 350px;
+    height: 290px;
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    width: 300px;
+    height: 250px;
+  }
+  .slider {
+    height: 70vw;
+  }
+}
+@media (max-width: 576px) {
+  .card {
+    width: 250px;
+    height: 200px;
+  }
+  .slider {
+    height: 80vw;
   }
 }

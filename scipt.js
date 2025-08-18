@@ -77,7 +77,7 @@ navbarAnimations();
 
 function heroSectionAnimations() {
   // Check if elements exist
-  const heroSection = document.querySelector('.s1');
+  const heroSection = document.querySelector(".s1");
   if (!heroSection) return;
 
   // Check if GSAP is loaded
@@ -85,7 +85,7 @@ function heroSectionAnimations() {
     // Initialize ScrollTrigger plugin if available
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.defaults({
-        markers: false // Set to true for debugging
+        markers: false, // Set to true for debugging
       });
     }
 
@@ -97,7 +97,7 @@ function heroSectionAnimations() {
     // Create animation timeline
     const heroTl = gsap.timeline({
       defaults: { ease: "power3.out" },
-      delay: 0.3 // Small delay to ensure everything's ready
+      delay: 0.3, // Small delay to ensure everything's ready
     });
 
     // Animate elements in sequence
@@ -106,23 +106,23 @@ function heroSectionAnimations() {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        ease: "back.out(1.2)"
+        ease: "back.out(1.2)",
       })
       .to(
-        ".s1 .txt-div p", 
+        ".s1 .txt-div p",
         {
           opacity: 1,
           y: 0,
-          duration: 0.6
+          duration: 0.6,
         },
         "-=0.4" // Overlap with previous animation
       )
       .to(
-        ".s1 .txt-div button", 
+        ".s1 .txt-div button",
         {
           opacity: 1,
           y: 0,
-          duration: 0.6
+          duration: 0.6,
         },
         "-=0.3" // Overlap with previous animation
       );
@@ -138,13 +138,14 @@ function heroSectionAnimations() {
           end: "bottom top",
           scrub: true,
           // Disable this trigger until entrance animation completes
-          toggleActions: "play none none none" 
-        }
+          toggleActions: "play none none none",
+        },
       });
     }
   } else {
     // Fallback if GSAP isn't loaded
-    document.querySelectorAll(".s1 .txt-div h1, .s1 .txt-div p, .s1 .txt-div button")
+    document
+      .querySelectorAll(".s1 .txt-div h1, .s1 .txt-div p, .s1 .txt-div button")
       .forEach((el) => {
         el.style.opacity = 1;
         el.style.transform = "none";
@@ -153,7 +154,7 @@ function heroSectionAnimations() {
 }
 
 // Call the function when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Add small delay to ensure GSAP is loaded if loaded async
   setTimeout(heroSectionAnimations, 300);
 });
@@ -613,7 +614,49 @@ function section5Animations() {
   });
 }
 // section5Animations();
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.s5Card');
+  const dots = document.querySelectorAll('.tracker-dot');
+  let currentIndex = 0;
 
+  // Show initial card
+  showCard(currentIndex);
+
+  // Set up click handlers for dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showCard(index);
+    });
+  });
+
+  // Auto-rotate cards (optional)
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    showCard(currentIndex);
+  }, 5000);
+
+  function showCard(index) {
+    // Hide all cards
+    cards.forEach(card => {
+      card.classList.remove('active');
+      card.style.opacity = '0';
+      card.style.position = 'absolute';
+    });
+    
+    // Deactivate all dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Show selected card
+    cards[index].classList.add('active');
+    cards[index].style.opacity = '1';
+    cards[index].style.position = 'relative';
+    
+    // Activate corresponding dot
+    dots[index].classList.add('active');
+    
+    currentIndex = index;
+  }
+});
 function section6Animations() {
   document.addEventListener("DOMContentLoaded", function () {
     if (typeof gsap !== "undefined") {
@@ -766,98 +809,205 @@ function section6Animations() {
 }
 section6Animations();
 
-function section7Animations() {
-  // GSAP Carousel Implementation
-  document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.querySelector(".blogCardContainer");
-    const cards = document.querySelectorAll(".blogCard");
-    const cardCount = cards.length;
-    const cardWidth = cards[0].offsetWidth + 30; // width + margin
 
-    // Set initial position
-    gsap.set(carousel, { x: 0 });
-
-    // Create dots for navigation
-    const dotsContainer = document.createElement("div");
-    dotsContainer.className = "carousel-dots";
-    for (let i = 0; i < cardCount; i++) {
-      const dot = document.createElement("div");
-      dot.className = "carousel-dot";
-      if (i === 0) dot.classList.add("active");
-      dot.dataset.index = i;
-      dotsContainer.appendChild(dot);
-    }
-    carousel.parentNode.appendChild(dotsContainer);
-
-    const dots = document.querySelectorAll(".carousel-dot");
+function initBlogCarousel() {
+  document.addEventListener("DOMContentLoaded", function() {
+    const carousel = document.querySelector('.blog-carousel');
+    const container = carousel?.querySelector('.blog-card-container');
+    const cards = container?.querySelectorAll('.blog-card');
+    const dotsContainer = carousel?.querySelector('.carousel-dots');
+    const prevBtn = carousel?.querySelector('.carousel-prev');
+    const nextBtn = carousel?.querySelector('.carousel-next');
+    
+    if (!carousel || !container || !cards || cards.length === 0) return;
+    
     let currentIndex = 0;
     let autoSlideInterval;
-
-    // Function to move carousel
-    function moveCarousel(index, animate = true) {
-      currentIndex = index;
-      const newX = -index * cardWidth;
-
+    let isDragging = false;
+    let startPosX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationId;
+    let cardsPerView;
+    
+    // Initialize carousel
+    function initCarousel() {
+      updateCardsPerView();
+      createDots();
+      updateCarousel();
+      startAutoSlide();
+      setupEventListeners();
+    }
+    
+    function updateCardsPerView() {
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        cardsPerView = 3;
+      } else if (width >= 640) {
+        cardsPerView = 2;
+      } else {
+        cardsPerView = 1;
+      }
+    }
+    
+    function createDots() {
+      if (!dotsContainer) return;
+      
+      dotsContainer.innerHTML = '';
+      const totalSlides = Math.ceil(cards.length / cardsPerView);
+      
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot';
+        if (i === currentIndex) dot.classList.add('active');
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
+    
+    function updateCarousel(animate = true) {
+      const cardWidth = container.offsetWidth / cardsPerView;
+      const newTranslate = -currentIndex * cardWidth * cardsPerView;
+      
       if (animate) {
-        gsap.to(carousel, {
-          x: newX,
+        gsap.to(container, {
+          x: newTranslate,
           duration: 0.5,
-          ease: "power2.out",
+          ease: "power2.out"
         });
       } else {
-        gsap.set(carousel, { x: newX });
+        gsap.set(container, { x: newTranslate });
       }
-
+      
       // Update active dot
-      dots.forEach((dot, i) => {
-        if (i === index) {
-          dot.classList.add("active");
-        } else {
-          dot.classList.remove("active");
-        }
+      document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
       });
+      
+      // Update button states
+      const maxIndex = Math.ceil(cards.length / cardsPerView) - 1;
+      prevBtn?.toggleAttribute('disabled', currentIndex === 0);
+      nextBtn?.toggleAttribute('disabled', currentIndex >= maxIndex);
     }
-
-    // Auto slide function
+    
+    function goToSlide(index) {
+      const maxIndex = Math.ceil(cards.length / cardsPerView) - 1;
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      updateCarousel();
+      resetAutoSlide();
+    }
+    
+    function goToPrev() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+        resetAutoSlide();
+      }
+    }
+    
+    function goToNext() {
+      const maxIndex = Math.ceil(cards.length / cardsPerView) - 1;
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+        resetAutoSlide();
+      }
+    }
+    
     function startAutoSlide() {
       autoSlideInterval = setInterval(() => {
-        const nextIndex = (currentIndex + 1) % cardCount;
-        moveCarousel(nextIndex);
-      }, 3000);
-    }
-
-    // Start auto slide
-    startAutoSlide();
-
-    // Pause on hover
-    carousel.addEventListener("mouseenter", () => {
-      clearInterval(autoSlideInterval);
-    });
-
-    carousel.addEventListener("mouseleave", startAutoSlide);
-
-    // Dot navigation
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const index = parseInt(dot.dataset.index);
-        if (index !== currentIndex) {
-          clearInterval(autoSlideInterval);
-          moveCarousel(index);
-          startAutoSlide();
+        const maxIndex = Math.ceil(cards.length / cardsPerView) - 1;
+        if (currentIndex >= maxIndex) {
+          currentIndex = 0;
+        } else {
+          currentIndex++;
         }
-      });
-    });
-
-    // Responsive adjustments
-    function handleResize() {
-      cardWidth = cards[0].offsetWidth + 30;
-      moveCarousel(currentIndex, false);
+        updateCarousel();
+      }, 5000);
     }
-
-    window.addEventListener("resize", handleResize);
+    
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+    
+    // Touch/Mouse events
+    function touchStart(e) {
+      isDragging = true;
+      startPosX = getPositionX(e);
+      prevTranslate = currentTranslate;
+      cancelAnimationFrame(animationId);
+      container.style.cursor = 'grabbing';
+      clearInterval(autoSlideInterval);
+    }
+    
+    function touchMove(e) {
+      if (!isDragging) return;
+      const currentPosX = getPositionX(e);
+      currentTranslate = prevTranslate + currentPosX - startPosX;
+      animationId = requestAnimationFrame(() => {
+        gsap.set(container, { x: currentTranslate });
+      });
+    }
+    
+    function touchEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      cancelAnimationFrame(animationId);
+      container.style.cursor = '';
+      
+      const cardWidth = container.offsetWidth / cardsPerView;
+      const movedBy = currentTranslate - prevTranslate;
+      
+      if (movedBy < -cardWidth * 0.25) {
+        goToNext();
+      } else if (movedBy > cardWidth * 0.25) {
+        goToPrev();
+      } else {
+        updateCarousel();
+      }
+      
+      resetAutoSlide();
+    }
+    
+    function getPositionX(e) {
+      return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    }
+    
+    function setupEventListeners() {
+      // Navigation buttons
+      prevBtn?.addEventListener('click', goToPrev);
+      nextBtn?.addEventListener('click', goToNext);
+      
+      // Drag events
+      container.addEventListener('mousedown', touchStart);
+      container.addEventListener('touchstart', touchStart, { passive: true });
+      window.addEventListener('mouseup', touchEnd);
+      window.addEventListener('touchend', touchEnd);
+      window.addEventListener('mousemove', touchMove);
+      window.addEventListener('touchmove', touchMove, { passive: false });
+      
+      // Window resize
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          updateCardsPerView();
+          createDots();
+          updateCarousel(false);
+        }, 100);
+      });
+    }
+    
+    // Initialize carousel
+    initCarousel();
   });
 }
-section7Animations();
+
+initBlogCarousel();
+
+
 
 function section9Animations() {
   // GSAP ScrollTrigger Animation Implementation
@@ -946,12 +1096,11 @@ function section9Animations() {
 section9Animations();
 
 function section9Slider() {
-  // GSAP Animation and Slider Functionality
   document.addEventListener("DOMContentLoaded", function () {
-    // Initialize GSAP ScrollTrigger
+    // GSAP Animation and Slider Functionality
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate the section when it comes into view
+    // Animation for section entrance
     gsap.from(".s9", {
       scrollTrigger: {
         trigger: ".s9",
@@ -996,20 +1145,33 @@ function section9Slider() {
     const dots = document.querySelectorAll(".dot");
     let currentIndex = 0;
     let interval;
+    let isHovering = false;
 
     function showTestimonial(index) {
-      // Reset all testimonials and dots
-      testimonials.forEach((testimonial) =>
-        testimonial.classList.remove("active")
-      );
-      dots.forEach((dot) => dot.classList.remove("active"));
+      // Ensure index is within bounds
+      if (index < 0) index = testimonials.length - 1;
+      if (index >= testimonials.length) index = 0;
+      
+      currentIndex = index;
 
-      // Show the selected testimonial and dot
-      testimonials[index].classList.add("active");
-      dots[index].classList.add("active");
+      // Hide all testimonials
+      testimonials.forEach(testimonial => {
+        testimonial.style.opacity = 0;
+        testimonial.style.position = "absolute";
+        testimonial.classList.remove("active");
+      });
 
-      // Animate the testimonial
-      gsap.from(testimonials[index], {
+      // Show the selected testimonial
+      testimonials[currentIndex].style.opacity = 1;
+      testimonials[currentIndex].style.position = "relative";
+      testimonials[currentIndex].classList.add("active");
+
+      // Update dots
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[currentIndex].classList.add("active");
+
+      // Animation for the active testimonial
+      gsap.from(testimonials[currentIndex], {
         opacity: 0,
         y: 20,
         duration: 0.8,
@@ -1018,29 +1180,35 @@ function section9Slider() {
     }
 
     function nextTestimonial() {
-      currentIndex = (currentIndex + 1) % testimonials.length;
-      showTestimonial(currentIndex);
+      if (!isHovering) {
+        showTestimonial(currentIndex + 1);
+      }
     }
 
     // Start auto-sliding
     function startSlider() {
+      clearInterval(interval);
       interval = setInterval(nextTestimonial, 3000);
     }
 
     // Pause auto-sliding when hovering
     const sliderContainer = document.querySelector(".testimonial-slider");
-    sliderContainer.addEventListener("mouseenter", () =>
-      clearInterval(interval)
-    );
-    sliderContainer.addEventListener("mouseleave", startSlider);
+    if (sliderContainer) {
+      sliderContainer.addEventListener("mouseenter", () => {
+        isHovering = true;
+        clearInterval(interval);
+      });
+      
+      sliderContainer.addEventListener("mouseleave", () => {
+        isHovering = false;
+        startSlider();
+      });
+    }
 
     // Dot click navigation
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
-        currentIndex = index;
-        showTestimonial(currentIndex);
-        // Reset the interval
-        clearInterval(interval);
+        showTestimonial(index);
         startSlider();
       });
     });
@@ -1048,6 +1216,15 @@ function section9Slider() {
     // Initialize the slider
     showTestimonial(0);
     startSlider();
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        showTestimonial(currentIndex);
+      }, 100);
+    });
   });
 }
 section9Slider();
@@ -1128,3 +1305,142 @@ function footerSectionAnimations() {
   });
 }
 footerSectionAnimations();
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Get elements
+  const carouselTrack = document.querySelector(".infinite-carousel-track");
+  const cards = document.querySelectorAll(".portfolio-card");
+  const cardCount = cards.length;
+
+  // Calculate angle between each card
+  const angleIncrement = 360 / cardCount;
+  let currentRotation = 0;
+
+  // Position cards in a circle
+  function positionCards() {
+    const radius =
+      window.innerWidth > 1200
+        ? 600
+        : window.innerWidth > 992
+        ? 500
+        : window.innerWidth > 768
+        ? 400
+        : 350;
+
+    cards.forEach((card, index) => {
+      const angle = index * angleIncrement;
+      gsap.set(card, {
+        rotationY: angle,
+        z: radius,
+        transformOrigin: `center center -${radius}px`,
+      });
+    });
+  }
+
+  // Animate carousel rotation
+  function animateCarousel() {
+    gsap.to(carouselTrack, {
+      rotationY: "-=360",
+      duration: 30,
+      ease: "none",
+      repeat: -1,
+      onUpdate: function () {
+        currentRotation = this.targets()[0]._gsap.rotationY;
+        updateCardScales();
+      },
+    });
+  }
+
+  // Update card scales based on position
+  function updateCardScales() {
+    cards.forEach((card) => {
+      const cardAngle =
+        (parseFloat(card._gsap.rotationY) + currentRotation) % 360;
+      const distanceFromCenter = Math.abs(180 - Math.abs(cardAngle - 180));
+      const scale = 1 - (distanceFromCenter / 180) * 0.5;
+
+      gsap.to(card, {
+        // scale: scale,
+        // opacity: 1 - (distanceFromCenter / 180) * 0.7,
+        duration: 0.5,
+      });
+    });
+  }
+
+  // Pause animation on hover
+  carouselTrack.addEventListener("mouseenter", () => {
+    gsap.to(carouselTrack, { timeScale: 0.3 });
+  });
+
+  carouselTrack.addEventListener("mouseleave", () => {
+    gsap.to(carouselTrack, { timeScale: 1 });
+  });
+
+  // Initialize
+  positionCards();
+  animateCarousel();
+  updateCardScales();
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    positionCards();
+    updateCardScales();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".swiper-slider");
+  const cards = document.querySelectorAll(".card");
+
+  // Clone cards for infinite loop
+  cards.forEach((card) => {
+    const clone = card.cloneNode(true);
+    slider.appendChild(clone);
+  });
+
+  // Calculate total width needed for animation
+  function calculateTotalWidth() {
+    const firstCard = cards[0];
+    const cardWidth = firstCard.offsetWidth;
+    const gap = 20; // Your gap value
+    return cards.length * (cardWidth + gap) * 2; // Double for clones
+  }
+
+  // GSAP animation
+  let animation;
+
+  function setupAnimation() {
+    const totalWidth = calculateTotalWidth();
+
+    // Kill existing animation if it exists
+    if (animation) animation.kill();
+
+    // Set initial position
+    gsap.set(slider, { x: 0 });
+
+    // Create animation
+    animation = gsap.to(slider, {
+      x: -totalWidth / 2,
+      duration: 30,
+      ease: "none",
+      repeat: -1,
+      onRepeat: function () {
+        // Reset position for seamless looping
+        gsap.set(slider, { x: 0 });
+        this.restart();
+      },
+    });
+  }
+
+  // Initialize animation
+  setupAnimation();
+
+  // Handle window resize
+  let resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      setupAnimation();
+    }, 250);
+  });
+});
