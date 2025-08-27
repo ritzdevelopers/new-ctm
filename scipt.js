@@ -1008,7 +1008,6 @@ function initBlogCarousel() {
 initBlogCarousel();
 
 
-
 function section9Animations() {
   // GSAP ScrollTrigger Animation Implementation
   document.addEventListener("DOMContentLoaded", function () {
@@ -1020,11 +1019,12 @@ function section9Animations() {
       const testimonialSection = document.querySelector(".s9");
       const leftSide = document.querySelector(".s9 .leftSide");
       const centerDiv = document.querySelector(".s9 .centerDiv");
-      const rightSide = document.querySelectorAll(".s9 .leftSide")[1];
+      const rightSide = document.querySelector(".s9 .rightSide") || document.querySelectorAll(".s9 .leftSide")[1];
 
       // Set initial state for animation
-      gsap.set([leftSide, rightSide], { autoAlpha: 0, x: -50 });
-      gsap.set(centerDiv, { autoAlpha: 0, y: 50 });
+      if (leftSide) gsap.set(leftSide, { autoAlpha: 0, x: -50 });
+      if (rightSide) gsap.set(rightSide, { autoAlpha: 0, x: 50 });
+      if (centerDiv) gsap.set(centerDiv, { autoAlpha: 0, y: 50 });
 
       // Create timeline for section animation
       const tl = gsap.timeline({
@@ -1033,21 +1033,13 @@ function section9Animations() {
           start: "top 70%",
           end: "bottom bottom",
           toggleActions: "play none none none",
-          markers: false, // Set to true for debugging
+          markers: false,
         },
       });
 
-      tl.to(leftSide, { autoAlpha: 1, x: 0, duration: 0.8, ease: "power2.out" })
-        .to(
-          rightSide,
-          { autoAlpha: 1, x: 0, duration: 0.8, ease: "power2.out" },
-          "-=0.6"
-        )
-        .to(
-          centerDiv,
-          { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" },
-          "-=0.6"
-        );
+      if (leftSide) tl.to(leftSide, { autoAlpha: 1, x: 0, duration: 0.8, ease: "power2.out" });
+      if (rightSide) tl.to(rightSide, { autoAlpha: 1, x: 0, duration: 0.8, ease: "power2.out" }, "-=0.6");
+      if (centerDiv) tl.to(centerDiv, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.6");
 
       // Animation for individual elements
       const images = document.querySelectorAll(".s9 .leftSide > div");
@@ -1066,7 +1058,7 @@ function section9Animations() {
       });
 
       // Make slide tracker interactive
-      const dots = document.querySelectorAll(".slideTracker p");
+      const dots = document.querySelectorAll(".slideTracker .dot");
       dots.forEach((dot, index) => {
         dot.addEventListener("click", () => {
           // Remove active class from all dots
@@ -1074,8 +1066,7 @@ function section9Animations() {
           // Add active class to clicked dot
           dot.classList.add("active");
 
-          // Here you would typically change the testimonial content
-          // For now we'll just animate the dot click
+          // Animate the dot click
           gsap.fromTo(
             dot,
             { scale: 0.8 },
@@ -1098,133 +1089,119 @@ section9Animations();
 function section9Slider() {
   document.addEventListener("DOMContentLoaded", function () {
     // GSAP Animation and Slider Functionality
-    gsap.registerPlugin(ScrollTrigger);
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Animation for section entrance
-    gsap.from(".s9", {
-      scrollTrigger: {
-        trigger: ".s9",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-    });
-
-    // Animate the side images
-    gsap.from(".leftSide div", {
-      scrollTrigger: {
-        trigger: ".s9",
-        start: "top 70%",
-        toggleActions: "play none none none",
-      },
-      x: -50,
-      opacity: 0,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: "back.out",
-    });
-
-    gsap.from(".rightSide div", {
-      scrollTrigger: {
-        trigger: ".s9",
-        start: "top 70%",
-        toggleActions: "play none none none",
-      },
-      x: 50,
-      opacity: 0,
-      stagger: 0.2,
-      duration: 0.8,
-      ease: "back.out",
-    });
-
-    // Testimonial slider functionality
-    const testimonials = document.querySelectorAll(".testimonial");
-    const dots = document.querySelectorAll(".dot");
-    let currentIndex = 0;
-    let interval;
-    let isHovering = false;
-
-    function showTestimonial(index) {
-      // Ensure index is within bounds
-      if (index < 0) index = testimonials.length - 1;
-      if (index >= testimonials.length) index = 0;
-      
-      currentIndex = index;
-
-      // Hide all testimonials
-      testimonials.forEach(testimonial => {
-        testimonial.style.opacity = 0;
-        testimonial.style.position = "absolute";
-        testimonial.classList.remove("active");
-      });
-
-      // Show the selected testimonial
-      testimonials[currentIndex].style.opacity = 1;
-      testimonials[currentIndex].style.position = "relative";
-      testimonials[currentIndex].classList.add("active");
-
-      // Update dots
-      dots.forEach(dot => dot.classList.remove("active"));
-      dots[currentIndex].classList.add("active");
-
-      // Animation for the active testimonial
-      gsap.from(testimonials[currentIndex], {
+      // Animation for section entrance
+      gsap.from(".s9", {
+        scrollTrigger: {
+          trigger: ".s9",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
         opacity: 0,
-        y: 20,
-        duration: 0.8,
+        y: 50,
+        duration: 1,
         ease: "power2.out",
       });
-    }
 
-    function nextTestimonial() {
-      if (!isHovering) {
-        showTestimonial(currentIndex + 1);
+      // Animate the side images
+      gsap.from(".leftSide div", {
+        scrollTrigger: {
+          trigger: ".s9",
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+        x: -50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: "back.out",
+      });
+
+      // Testimonial slider functionality
+      const testimonials = document.querySelectorAll(".testimonial");
+      const dots = document.querySelectorAll(".dot");
+      let currentIndex = 0;
+      let interval;
+      let isHovering = false;
+
+      function showTestimonial(index) {
+        // Ensure index is within bounds
+        if (index < 0) index = testimonials.length - 1;
+        if (index >= testimonials.length) index = 0;
+        
+        currentIndex = index;
+
+        // Hide all testimonials
+        testimonials.forEach(testimonial => {
+          testimonial.classList.remove("active");
+          gsap.set(testimonial, { opacity: 0, visibility: "hidden" });
+        });
+
+        // Show the selected testimonial
+        testimonials[currentIndex].classList.add("active");
+        gsap.to(testimonials[currentIndex], {
+          opacity: 1,
+          visibility: "visible",
+          duration: 0.8,
+          ease: "power2.out"
+        });
+
+        // Update dots
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[currentIndex].classList.add("active");
       }
-    }
 
-    // Start auto-sliding
-    function startSlider() {
-      clearInterval(interval);
-      interval = setInterval(nextTestimonial, 3000);
-    }
+      function nextTestimonial() {
+        if (!isHovering) {
+          showTestimonial(currentIndex + 1);
+        }
+      }
 
-    // Pause auto-sliding when hovering
-    const sliderContainer = document.querySelector(".testimonial-slider");
-    if (sliderContainer) {
-      sliderContainer.addEventListener("mouseenter", () => {
-        isHovering = true;
+      // Start auto-sliding
+      function startSlider() {
         clearInterval(interval);
+        interval = setInterval(nextTestimonial, 5000); // Increased to 5 seconds for better UX
+      }
+
+      // Pause auto-sliding when hovering
+      const sliderContainer = document.querySelector(".testimonial-slider");
+      if (sliderContainer) {
+        sliderContainer.addEventListener("mouseenter", () => {
+          isHovering = true;
+          clearInterval(interval);
+        });
+        
+        sliderContainer.addEventListener("mouseleave", () => {
+          isHovering = false;
+          startSlider();
+        });
+      }
+
+      // Dot click navigation
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          showTestimonial(index);
+          startSlider();
+        });
       });
-      
-      sliderContainer.addEventListener("mouseleave", () => {
-        isHovering = false;
+
+      // Initialize the slider
+      if (testimonials.length > 0) {
+        showTestimonial(0);
         startSlider();
+      }
+
+      // Handle window resize
+      let resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+          showTestimonial(currentIndex);
+        }, 100);
       });
     }
-
-    // Dot click navigation
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        showTestimonial(index);
-        startSlider();
-      });
-    });
-
-    // Initialize the slider
-    showTestimonial(0);
-    startSlider();
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(function() {
-        showTestimonial(currentIndex);
-      }, 100);
-    });
   });
 }
 section9Slider();
