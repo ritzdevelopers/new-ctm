@@ -1421,7 +1421,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create animation
     animation = gsap.to(slider, {
       x: -totalWidth / 2,
-      duration: 30,
+      duration: 80,
       ease: "none",
       repeat: -1,
       onRepeat: function () {
